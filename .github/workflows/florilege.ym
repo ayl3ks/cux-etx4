@@ -1,0 +1,46 @@
+name: Florilège du jour
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # 3h UTC = 5h à Bruxelles en été, 4h en hiver
+  workflow_dispatch:       # bouton « Run workflow » pour lancer à la main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer polices et reportlab
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-dejavu-core fonts-dejavu-extra > /dev/null
+          pip install -q reportlab
+
+      - name: Fabriquer le PDF
+        run: python florilege.py sources.json site/florilege.pdf
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
