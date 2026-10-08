@@ -1,0 +1,50 @@
+{
+  "_note": "Liste des flux RSS. acces : 'abonne' = tu es abonné, 'bloque' = payant sans abonnement, 'variable' = mélange libre/payant. Les URL sont à vérifier au premier lancement.",
+  "sources": {
+    "Le Monde": {
+      "couleur": "#555555",
+      "acces": "abonne",
+      "flux": {
+        "une": "https://www.lemonde.fr/rss/une.xml",
+        "international": "https://www.lemonde.fr/international/rss_full.xml",
+        "idees": "https://www.lemonde.fr/idees/rss_full.xml"
+      }
+    },
+    "Libération": {
+      "couleur": "#C0392B",
+      "acces": "variable",
+      "flux": {
+        "une": "https://www.liberation.fr/arc/outboundfeeds/rss-all/?outputType=xml"
+      }
+    },
+    "Le Figaro": {
+      "couleur": "#1F4E8C",
+      "acces": "variable",
+      "flux": {
+        "une": "https://www.lefigaro.fr/rss/figaro_actualites.xml",
+        "international": "https://www.lefigaro.fr/rss/figaro_international.xml"
+      }
+    },
+    "Mediapart": {
+      "couleur": "#B03A5B",
+      "acces": "bloque",
+      "flux": {
+        "une": "https://www.mediapart.fr/articles/feed"
+      }
+    },
+    "RTBF": {
+      "couleur": "#2E7D5B",
+      "acces": "variable",
+      "flux": {
+        "une": "https://rss.rtbf.be/article/rss/highlight_rtbf_info.xml"
+      }
+    },
+    "Le Soir": {
+      "couleur": "#8A6D1F",
+      "acces": "variable",
+      "flux": {
+        "une": "https://www.lesoir.be/rss/81853/cible_principale_gratuit"
+      }
+    }
+  }
+}
